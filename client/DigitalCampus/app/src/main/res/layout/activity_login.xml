@@ -73,5 +73,16 @@
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </LinearLayout>
-
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:text="登录"
+        android:layout_below="@id/lin_password"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_login_background"
+        android:textColor="@color/infoBlueColor"
+        android:textSize="17sp"
+        android:onClick="onClick"/>
 </RelativeLayout>

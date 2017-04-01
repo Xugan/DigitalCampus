@@ -28,6 +28,8 @@
     <color name="coolGrayColor">#767a85</color>
     <color name="charcoalColor">#222222</color>
 
+    <color name="transparentBlcak">#77000000</color>
+
     <!-- Blues -->
     <color name="tealColor">#1ca0aa</color>
     <color name="steelBlueColor">#6799aa</color>

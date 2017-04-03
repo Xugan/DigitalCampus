@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentPagerAdapter;
  */
 
 public class MainFragmentPagerAdapter extends FragmentPagerAdapter{
+
     final int PAGE_COUNT = 3;
     private String tabTitles[] = new String[] { "公告", "今日案件", "今日分析" };
     private Context context;
@@ -26,8 +27,19 @@ public class MainFragmentPagerAdapter extends FragmentPagerAdapter{
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0) {
-            return new NoticeFragment();
+        //if (position == 0) {
+          //  return new NoticeFragment();
+        //}
+        switch (position) {
+            case 0:
+                return new NoticeFragment();
+                //break;
+            case 1:
+                return new CaseFragment();
+                //break;
+            case 2:
+                return new AnalysisFragment();
+                //break;
         }
         return PageFragment.newInstance(position + 1);
     }

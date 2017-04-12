@@ -23,6 +23,10 @@
         </activity>
         <activity android:name=".ReportActivity">
         </activity>
+        <activity android:name=".CaseActivity">
+        </activity>
+        <activity android:name=".WorkInfoActivity">
+        </activity>
     </application>
 
 </manifest>

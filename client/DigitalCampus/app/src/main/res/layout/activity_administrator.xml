@@ -26,4 +26,11 @@
         android:id="@+id/etPassword"
         android:layout_below="@+id/tvHelp"
         android:layout_centerHorizontal="true"/>
+    <Button
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/etPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Login"
+        android:onClick="login"/>
 </RelativeLayout>

@@ -19,6 +19,10 @@
         </activity>
         <activity android:name=".CaseInfoActivity">
         </activity>
+        <activity android:name=".AdministratorActivity">
+        </activity>
+        <activity android:name=".ReportActivity">
+        </activity>
     </application>
 
 </manifest>

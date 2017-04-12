@@ -25,7 +25,12 @@
             android:textColor="@color/white"
             android:textSize="20sp"/>
     </LinearLayout>
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:id="@+id/llContainer"
+        />
 
     <android.support.design.widget.TabLayout
         android:id="@+id/main_tab"
@@ -37,7 +42,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/main_tab"/>
-
+    
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

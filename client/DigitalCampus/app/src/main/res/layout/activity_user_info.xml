@@ -22,6 +22,7 @@
             android:textSize="25sp"
             android:textColor="@color/white"/>
         <TextView
+            android:id="@+id/tvEdit"
             android:layout_marginRight="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -71,6 +72,7 @@
             android:layout_height="wrap_content"
             android:text="@string/stuNum"/>
         <EditText
+            android:id="@+id/etStuNum"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
@@ -89,6 +91,7 @@
             android:layout_height="wrap_content"
             android:text="@string/department"/>
         <EditText
+            android:id="@+id/etDepartment"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
@@ -107,6 +110,7 @@
             android:layout_height="wrap_content"
             android:text="@string/phone"/>
         <EditText
+            android:id="@+id/etPhone"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>
@@ -125,6 +129,7 @@
             android:layout_height="wrap_content"
             android:text="@string/mail"/>
         <EditText
+            android:id="@+id/etMail"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"/>

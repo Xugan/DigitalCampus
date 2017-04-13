@@ -44,6 +44,7 @@ public class CaseFragment extends Fragment{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getContext(),CaseInfoActivity.class);
+                intent.putExtra("caseNumber",position);
                 startActivity(intent);
             }
         });

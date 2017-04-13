@@ -40,7 +40,7 @@
                 android:id="@+id/case_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="第xxx类案卷"
+                android:text="第xxx号案卷"
                 android:textSize="20sp"
                 android:textColor="@color/infoBlueColor"
                 android:layout_alignParentTop="true"

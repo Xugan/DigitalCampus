@@ -61,6 +61,7 @@
             android:id="@+id/spCases"/>
     </LinearLayout>
     <LinearLayout
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -72,6 +73,7 @@
             android:layout_marginLeft="20dp"
             android:layout_marginTop="20dp"/>
         <ImageButton
+            android:id="@+id/ibCamara"
             android:layout_marginLeft="50dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -79,6 +81,7 @@
     </LinearLayout>
 
     <RadioGroup
+        android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -94,13 +97,15 @@
     </RadioGroup>
 
     <EditText
+        android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:hint="请填入具体情况XXXXXXXXXXXXX
         (不超过100字)"/>
 
     <Button
+        android:layout_marginTop="20dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

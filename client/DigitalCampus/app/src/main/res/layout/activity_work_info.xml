@@ -8,10 +8,12 @@
     android:orientation="vertical"
     tools:context="com.foo.digitalcampus.WorkInfoActivity">
     <TextView
+        android:id="@+id/tvCaseNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="第001号案卷"
         android:textSize="50sp"
+        android:textColor="@color/infoBlueColor"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="20dp"/>
     <LinearLayout

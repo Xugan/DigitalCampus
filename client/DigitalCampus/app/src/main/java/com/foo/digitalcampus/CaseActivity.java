@@ -3,6 +3,7 @@ package com.foo.digitalcampus;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -36,6 +37,8 @@ public class CaseActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(CaseActivity.this,WorkInfoActivity.class);
+                intent.putExtra("caseNumber",position);
+                Log.i("position",position+"");
                 startActivity(intent);
             }
         });

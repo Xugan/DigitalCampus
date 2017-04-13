@@ -15,39 +15,31 @@ public class MainActivity extends AppCompatActivity {
 
     TabLayout mainTabLayout;
     ViewPager mainViewPager;
-    private LinearLayout llContainer;
+    //主页面的四个标签
     private ImageView ivHome_icon;
     private ImageView ivRepaire_icon;
     private ImageView ivWork_icon;
     private ImageView ivPersonal_icon;
-//    private FragmentManager manager;
-//    private FragmentTransaction transaction;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mainTabLayout = (TabLayout) findViewById(R.id.main_tab);
         mainViewPager = (ViewPager) findViewById(R.id.main_viewpager);
-        llContainer = (LinearLayout) findViewById(R.id.llContainer);
+
         ivHome_icon = (ImageView) findViewById(R.id.iv_home_icon);
         ivRepaire_icon = (ImageView) findViewById(R.id.iv_repair_icon);
         ivWork_icon = (ImageView) findViewById(R.id.iv_work_icon);
         ivPersonal_icon = (ImageView) findViewById(R.id.iv_personal_icon);
-
+        //viewPager设置适配器
         mainViewPager.setAdapter(new MainFragmentPagerAdapter(getSupportFragmentManager(),
                 MainActivity.this));
+        //首页viewPager与上边的Tab标签联动
         mainTabLayout.setupWithViewPager(mainViewPager);
 
-//        manager = getSupportFragmentManager();
-//        transaction = manager.beginTransaction();
-//        ivHome_icon.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                transaction.replace(R.id.llContiner,new PageFragment());
-//                transaction.commit();
-//            }
-//        });
 
+        //点击上报icon跳转首页页面
         ivRepaire_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -55,11 +47,19 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+        //点击工作icon跳转工作页面
         ivWork_icon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this,AdministratorActivity.class);
+                startActivity(intent);
+            }
+        });
+        //点击服务icon跳转服务页面
+        ivPersonal_icon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,ServiceActivity.class);
                 startActivity(intent);
             }
         });

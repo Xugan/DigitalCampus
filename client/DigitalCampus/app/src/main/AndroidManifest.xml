@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.foo.digitalcampus">
+
     <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -29,6 +31,10 @@
         <activity android:name=".CaseActivity">
         </activity>
         <activity android:name=".WorkInfoActivity">
+        </activity>
+        <activity android:name=".ServiceActivity">
+        </activity>
+        <activity android:name=".UserInfoActivity">
         </activity>
     </application>
 

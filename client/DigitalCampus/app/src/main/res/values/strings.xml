@@ -3,4 +3,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="name">姓&#160;&#160;&#160;&#160;名：</string>
+    <string name="stuNum">学&#160;&#160;&#160;&#160;号：</string>
+    <string name="department">院&#160;&#160;&#160;&#160;系：</string>
+    <string name="mail">邮&#160;&#160;&#160;&#160;箱：</string>
+    <string name="phone">手机号：</string>
 </resources>

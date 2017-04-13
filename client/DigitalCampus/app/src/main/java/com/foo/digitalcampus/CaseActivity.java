@@ -21,7 +21,9 @@ public class CaseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_case);
+
         lvCase_today = (ListView) findViewById(R.id.case_today);
+        //填充list中的内容
         list = new ArrayList<>();
         for(int i=0;i<10;i++){
             Map<String,String> map = new HashMap<>();
@@ -30,13 +32,19 @@ public class CaseActivity extends AppCompatActivity {
             map.put("case_time","2017-04-03");
             list.add(map);
         }
+        //适配器
         caseTodayAdapter = new CaseTodayAdapter(list,this);
+
+        //listview配置适配器
         lvCase_today.setAdapter(caseTodayAdapter);
 
+        //监听listview的子项点击事件
         lvCase_today.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                //点击子项跳转至工作详情页面
                 Intent intent = new Intent(CaseActivity.this,WorkInfoActivity.class);
+                //将案件编号传至工作详情页面
                 intent.putExtra("caseNumber",position);
                 Log.i("position",position+"");
                 startActivity(intent);

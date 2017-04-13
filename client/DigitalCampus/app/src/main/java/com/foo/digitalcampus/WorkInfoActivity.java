@@ -25,10 +25,12 @@ public class WorkInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_info);
+
         spDepartment = (Spinner) findViewById(R.id.spDepartment);
         spStatus = (Spinner) findViewById(R.id.spStatus);
         tvSystemTime = (TextView) findViewById(R.id.tvSystemTime);
         tvCaseNumber = (TextView) findViewById(R.id.tvCaseNumber);
+
         departmentAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,departments);
         StatusAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,status);
         spDepartment.setAdapter(departmentAdapter);

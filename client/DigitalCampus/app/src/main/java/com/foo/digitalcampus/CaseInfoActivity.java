@@ -12,8 +12,10 @@ public class CaseInfoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_case_info);
         tvCaseNumber = (TextView) findViewById(R.id.tvCaseNumber);
+        //从intent中取出案件编号
         Intent intent = getIntent();
         int caseNumber = intent.getIntExtra("caseNumber",-1);
+        //绑定案件编号
         tvCaseNumber.setText("第"+(caseNumber+1)+"号案卷");
     }
 }

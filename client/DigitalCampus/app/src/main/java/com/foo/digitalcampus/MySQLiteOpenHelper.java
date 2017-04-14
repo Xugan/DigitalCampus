@@ -5,25 +5,26 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 /**
- * Created by shgl1hz1 on 2017/4/13.
+ * Created by Joker-Shen on 2017/4/13.
  */
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
     private static final int VERSION = 1;
-    private static final String DBNAME = "user.db";
+    private static final String DBNAME = "users.db";
     public MySQLiteOpenHelper(Context context) {
         super(context, DBNAME, null, VERSION);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("crate table user if not exist " +
+        db.execSQL("crate table if not exists user " +
                 "(" +
                 "_id integer primary key autouincrement," +
+                "" +
                 "username text," +
-                "stu_num varchar(200)," +
+                "stu_num integer," +
                 "department text," +
-                "phone_num varchar(200)," +
+                "phone_num int," +
                 "mail text" +
                 ")");
     }

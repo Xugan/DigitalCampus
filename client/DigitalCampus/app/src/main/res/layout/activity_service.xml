@@ -28,15 +28,16 @@
 
     </LinearLayout>
     <TextView
+        android:background="@color/infoBlueColor"
         android:id="@+id/tvUsername"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="欢迎XXX"
-        android:textSize="25sp"/>
+        android:textSize="25sp"
+        android:textColor="@color/white"/>
     <View
-        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="5dp"
         android:background="@color/infoBlueColor"

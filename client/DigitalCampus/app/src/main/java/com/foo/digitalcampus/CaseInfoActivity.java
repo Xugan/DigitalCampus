@@ -17,5 +17,6 @@ public class CaseInfoActivity extends AppCompatActivity {
         int caseNumber = intent.getIntExtra("caseNumber",-1);
         //绑定案件编号
         tvCaseNumber.setText("第"+(caseNumber+1)+"号案卷");
+
     }
 }

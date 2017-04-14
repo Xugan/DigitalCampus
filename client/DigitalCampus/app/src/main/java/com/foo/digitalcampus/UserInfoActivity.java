@@ -2,6 +2,7 @@ package com.foo.digitalcampus;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -54,6 +55,7 @@ public class UserInfoActivity extends AppCompatActivity {
                     etMail.setEnabled(false);
                     etPhone.setEnabled(false);
                     etDepartment.setEnabled(false);
+
                 }
             }
         });

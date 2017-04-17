@@ -100,9 +100,14 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
-        android:layout_height="200dp"
+        android:layout_height="100dp"
         android:hint="请填入具体情况XXXXXXXXXXXXX
         (不超过100字)"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="显式所在位置"/>
 
     <Button
         android:layout_marginTop="20dp"

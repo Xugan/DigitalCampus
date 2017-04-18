@@ -71,15 +71,27 @@
             android:text="现场拍照"
             android:textSize="20dp"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="20dp"/>
-        <ImageButton
-            android:id="@+id/ibCamara"
-            android:layout_marginLeft="50dp"
+            />
+        <Button
+            android:id="@+id/btCamera"
+            android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@mipmap/ic_launcher"/>
+            android:text="拍照"
+            />
+        <Button
+            android:text="从相册中选取"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:id="@+id/btChoosePic"/>
     </LinearLayout>
-
+    <ImageView
+        android:id="@+id/ivPhoto"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/ic_launcher"/>
     <RadioGroup
         android:layout_marginTop="10dp"
         android:layout_width="wrap_content"
@@ -104,10 +116,12 @@
         android:hint="请填入具体情况XXXXXXXXXXXXX
         (不超过100字)"/>
     <TextView
+        android:id="@+id/tvShowLocation"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="50dp"
         android:gravity="center"
-        android:text="显式所在位置"/>
+        android:text="显式所在位置"
+        android:onClick="showLocation"/>
 
     <Button
         android:layout_marginTop="20dp"

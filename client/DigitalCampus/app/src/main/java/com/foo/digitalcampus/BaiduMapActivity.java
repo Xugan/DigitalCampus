@@ -2,6 +2,8 @@ package com.foo.digitalcampus;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -10,7 +12,7 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.location.BDNotifyListener;//假如用到位置提醒功能，需要import该类
 import com.baidu.location.Poi;
 public class BaiduMapActivity extends AppCompatActivity {
-
+    private TextView tvErrorCode;
     public LocationClient mLocationClient = null;
     public BDLocationListener myListener = new MyLocationListener();
 
@@ -18,10 +20,13 @@ public class BaiduMapActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_baidu_map);
+
+        tvErrorCode = (TextView) findViewById(R.id.tvErrorCode);
         mLocationClient = new LocationClient(getApplicationContext());
         //声明LocationClient类
         mLocationClient.registerLocationListener( myListener );
         //注册监听函数
+
 
         mLocationClient.start();
         NotifyLister mNotifyer = new NotifyLister();
@@ -33,8 +38,9 @@ public class BaiduMapActivity extends AppCompatActivity {
         //注册位置提醒监听事件后，可以通过SetNotifyLocation 来修改位置提醒设置，修改后立刻生效。
 
         //取消位置提醒
-        mLocationClient.removeNotifyEvent(mNotifyer);
-
+       // mLocationClient.removeNotifyEvent(mNotifyer);
+        Toast.makeText(BaiduMapActivity.this,"服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因。error code:167",Toast.LENGTH_LONG).show();
+        this.finish();
 
     }
 
@@ -74,8 +80,8 @@ public class BaiduMapActivity extends AppCompatActivity {
 
         option.setEnableSimulateGps(false);
         //可选，默认false，设置是否需要过滤GPS仿真结果，默认需要
-
         mLocationClient.setLocOption(option);
+
     }
 
 }

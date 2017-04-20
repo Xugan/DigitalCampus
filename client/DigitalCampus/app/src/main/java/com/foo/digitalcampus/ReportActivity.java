@@ -70,7 +70,7 @@ public class ReportActivity extends AppCompatActivity {
         mTakePhoto = (Button) findViewById(R.id.btCamera);
         mChoosePhoto = (Button) findViewById(R.id.btChoosePic);
         picture = (ImageView) findViewById(R.id.ivPhoto);
-        mTakePhoto = (Button) findViewById(R.id.btCamera);
+
         //监听摄像头的点击事件
         mTakePhoto.setOnClickListener(new View.OnClickListener() {
             @Override

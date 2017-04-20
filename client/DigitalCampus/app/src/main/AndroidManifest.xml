@@ -2,10 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.foo.digitalcampus">
 
-    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
 
+    <uses-feature android:name="android.hardware.camera2"/>
+    <uses-feature android:name="android.hardware.camera2.autofocus"/>
     <!-- 这个权限用于进行网络定位 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <!-- 这个权限用于访问GPS定位 -->
@@ -70,18 +73,22 @@
             android:value="cRzGgqlP9eOAdIvYBUH5wF7UMwu973xp"/>
 
         <activity android:name=".BaiduMapActivity">
-
         </activity>
 
         <provider
-            android:authorities="com.gyq.cameraalbumtest.fileprovider"
             android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.gyq.cameraalbumtest.fileprovider"
             android:exported="false"
             android:grantUriPermissions="true">
-            <meta-data android:name="android.support.FILE_PROVIDER_PATHS"
-                       android:resource="@xml/file_paths"/>
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths"/>
         </provider>
 
+        <activity android:name=".WebviewActivity">
+        </activity>
+        <activity android:name=".UpdatePasswordActivity">
+        </activity>
     </application>
 
 </manifest>

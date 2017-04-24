@@ -1,5 +1,6 @@
 package com.foo.digitalcampus;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
@@ -11,6 +12,10 @@ import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
 import com.baidu.location.BDNotifyListener;//假如用到位置提醒功能，需要import该类
 import com.baidu.location.Poi;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 public class BaiduMapActivity extends AppCompatActivity {
     private TextView tvErrorCode;
     public LocationClient mLocationClient = null;
@@ -40,7 +45,12 @@ public class BaiduMapActivity extends AppCompatActivity {
         //取消位置提醒
        // mLocationClient.removeNotifyEvent(mNotifyer);
         Toast.makeText(BaiduMapActivity.this,"服务端网络定位失败，可以反馈IMEI号和大体定位时间到loc-bugs@baidu.com，会有人追查原因。error code:167",Toast.LENGTH_LONG).show();
-        this.finish();
+        new Timer().schedule(new TimerTask() {
+            @Override
+            public void run() {
+               BaiduMapActivity.this.finish();
+            }
+        },2000);
 
     }
 

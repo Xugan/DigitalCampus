@@ -17,7 +17,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("crate table if not exists user " +
+        db.execSQL("crate table if not exists UserInfo " +
                 "(" +
                 "_id integer primary key autouincrement," +
                 "" +
@@ -26,6 +26,13 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
                 "department text," +
                 "phone_num int," +
                 "mail text" +
+                ")");
+        db.execSQL("create table if not exists Report" +
+                "(" +
+                "_id integer primary key autoincrement," +
+                "casenum integer," +
+                "campus-area text," +
+                ""+
                 ")");
     }
 

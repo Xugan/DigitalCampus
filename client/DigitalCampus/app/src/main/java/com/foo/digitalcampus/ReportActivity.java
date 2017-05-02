@@ -3,9 +3,12 @@ package com.foo.digitalcampus;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -17,9 +20,13 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.ThemedSpinnerAdapter;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -34,6 +41,8 @@ import com.baidu.location.BDNotifyListener;//假如用到位置提醒功能，�
 import com.baidu.location.Poi;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 public class ReportActivity extends AppCompatActivity {
     private Spinner spSchools;
@@ -51,6 +60,15 @@ public class ReportActivity extends AppCompatActivity {
     public static final int TAKE_PHOTO = 1;
     public static final int CHOOSE_PHOTO = 2;
     private Uri imageUri;
+    private MySQLiteOpenHelper helper;
+    private SQLiteDatabase db;
+    private String spSchoolSelect ;
+    private String spCaseSelect;
+    private String imagePath;
+    private String date;
+    private String caseContent;
+    private EditText etContent;
+
 
 
 
@@ -61,12 +79,39 @@ public class ReportActivity extends AppCompatActivity {
         tvShowLocation = (TextView) findViewById(R.id.tvShowLocation);
         spCases = (Spinner) findViewById(R.id.spCases);
         spSchools = (Spinner) findViewById(R.id.SpSchools);
+        etContent = (EditText) findViewById(R.id.et_content);
+
+        //Log.i("caseContent",caseContent);
         //校区下拉框绑定适配器
         schoolAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,schools);
         spSchools.setAdapter(schoolAdapter);
+
+        spSchools.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spSchoolSelect = spSchools.getSelectedItem().toString();
+                //Toast.makeText(ReportActivity.this,spSchoolSelect,Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         //案件下拉框绑定适配器
         caseAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_dropdown_item_1line,cases);
         spCases.setAdapter(caseAdapter);
+        spCases.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                spCaseSelect = spCases.getSelectedItem().toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
         mTakePhoto = (Button) findViewById(R.id.btCamera);
         mChoosePhoto = (Button) findViewById(R.id.btChoosePic);
         picture = (ImageView) findViewById(R.id.ivPhoto);
@@ -123,12 +168,19 @@ public class ReportActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ReportActivity.this,BaiduMapActivity.class);
                 startActivity(intent);
-
-
             }
         });
 
+
+        helper = new MySQLiteOpenHelper(this);
+
+        SimpleDateFormat format = new SimpleDateFormat("yyyy年MM月dd日");
+        Date currentDate = new Date(System.currentTimeMillis());
+        date = format.format(currentDate);
+        Log.i("ReportActivity Date",date);
     }
+
+
 
 
     @Override
@@ -173,16 +225,16 @@ public class ReportActivity extends AppCompatActivity {
     }
 
     private String getImagePath(Uri uri, String selection) {
-        String path = null;
+         imagePath = null;
         //通过Uri和selection来获取真实的图片路径
         Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                imagePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
             }
             cursor.close();
         }
-        return path;
+        return imagePath;
     }
 
     private void displayImage(String imagePath) {
@@ -225,10 +277,27 @@ public class ReportActivity extends AppCompatActivity {
         } else if ("file".equalsIgnoreCase(uri.getScheme())) {
             //如果是file类型的uri，直接获取路径即可
             imagePath = uri.getPath();
-
         }
 
         displayImage(imagePath);
+    }
+
+    public void commit(View view){
+        db = helper.getReadableDatabase();
+        caseContent = etContent.getText().toString();
+        ContentValues values = new ContentValues();
+        values.put("campus_area",spSchoolSelect);
+        values.put("case_type",spCaseSelect);
+        values.put("image_url",imagePath);
+        values.put("content",caseContent);
+        values.put("date",date);
+        //Log.i("Report imagePath",imagePath);
+        Log.i("Report content",caseContent);
+        long result = db.insert("report",null,values);
+        if(result>0){
+            Toast.makeText(ReportActivity.this, "commit success!", Toast.LENGTH_SHORT).show();
+        }
+
     }
 
 

@@ -2,6 +2,7 @@ package com.foo.digitalcampus;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.EditText;
 
 public class UpdatePasswordActivity extends AppCompatActivity {
@@ -16,5 +17,8 @@ public class UpdatePasswordActivity extends AppCompatActivity {
         etNewPassword = (EditText) findViewById(R.id.etNewPassword);
         etConfirmPassword = (EditText) findViewById(R.id.etConfirmPassword);
 
+    }
+    public void cancel(View view){
+        UpdatePasswordActivity.this.finish();
     }
 }

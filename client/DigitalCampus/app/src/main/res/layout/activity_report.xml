@@ -5,7 +5,6 @@
     android:id="@+id/activity_report"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-   
     android:orientation="vertical"
     tools:context="com.foo.digitalcampus.ReportActivity">
     <LinearLayout
@@ -28,7 +27,7 @@
             android:textSize="20sp"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -45,7 +44,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="20dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -61,7 +60,7 @@
             android:id="@+id/spCases"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_marginTop="20dp"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -89,8 +88,8 @@
     <ImageView
         android:id="@+id/ivPhoto"
         android:layout_gravity="center"
-        android:layout_width="300dp"
-        android:layout_height="100dp"
+        android:layout_width="200dp"
+        android:layout_height="80dp"
         android:src="@mipmap/ic_launcher"/>
     <RadioGroup
         android:layout_marginTop="10dp"
@@ -109,7 +108,7 @@
     </RadioGroup>
 
     <EditText
-        android:layout_marginTop="10dp"
+        android:id="@+id/et_content"
         android:layout_gravity="center_horizontal"
         android:layout_width="300dp"
         android:layout_height="100dp"
@@ -129,5 +128,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="提交"
+        android:onClick="commit"
         />
 </LinearLayout>

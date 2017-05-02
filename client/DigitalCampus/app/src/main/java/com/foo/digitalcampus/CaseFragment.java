@@ -1,6 +1,8 @@
 package com.foo.digitalcampus;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,7 +24,9 @@ import java.util.Map;
 public class CaseFragment extends Fragment{
     private ListView lvCase_today;
     private CaseTodayAdapter caseTodayAdapter;
-    private List<Map<String,String>> list;
+    private List<Map<String,Object>> list;
+    private SQLiteDatabase db;
+    private MySQLiteOpenHelper helper;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -30,15 +34,7 @@ public class CaseFragment extends Fragment{
         View view = inflater.inflate(R.layout.case_fragment,container,false);
         lvCase_today = (ListView) view.findViewById(R.id.case_today);
         list = new ArrayList<>();
-        for(int i=0;i<10;i++){
-            Map<String,String> map = new HashMap<>();
-            map.put("case_title","第"+(i+1)+"号案卷");
-            map.put("case_type","类型");
-            map.put("case_time","2017-04-03");
-            list.add(map);
-        }
-        caseTodayAdapter = new CaseTodayAdapter(list,getContext());
-        lvCase_today.setAdapter(caseTodayAdapter);
+
 
         lvCase_today.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -48,6 +44,23 @@ public class CaseFragment extends Fragment{
                 startActivity(intent);
             }
         });
+        helper = new MySQLiteOpenHelper(getContext());
+        db = helper.getReadableDatabase();
+        Cursor cursor = db.query("report",null,null,null,null,null,null);
+        while(cursor.moveToNext()){
+            Map<String,Object> map = new HashMap<>();
+            map.put("image_url",cursor.getString(cursor.getColumnIndex("image_url")));
+            map.put("case_num",cursor.getInt(cursor.getColumnIndex("_id")));
+            map.put("case_type",cursor.getString(cursor.getColumnIndex("case_type")));
+            map.put("case_status",cursor.getString(cursor.getColumnIndex("status")));
+            map.put("case_date",cursor.getString(cursor.getColumnIndex("date")));
+            list.add(map);
+        }
+        cursor.close();
+
+        caseTodayAdapter = new CaseTodayAdapter(list,getContext());
+        lvCase_today.setAdapter(caseTodayAdapter);
+        caseTodayAdapter.notifyDataSetChanged();
         return view;
     }
 }

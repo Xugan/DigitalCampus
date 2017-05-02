@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String DBNAME = "users.db";
     public MySQLiteOpenHelper(Context context) {
         super(context, DBNAME, null, VERSION);
@@ -17,29 +17,33 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL("crate table if not exists UserInfo " +
-                "(" +
-                "_id integer primary key autouincrement," +
-                "" +
-                "username text," +
-                "stu_num integer," +
-                "department text," +
-                "phone_num int," +
-                "mail text" +
-                ")");
-        db.execSQL("create table if not exists Report" +
+//        db.execSQL("crate table if not exists UserInfo " +
+//                "(" +
+//                "_id integer primary key autoincrement," +
+//                "username text," +
+//                "stu_num integer," +
+//                "department text," +
+//                "phone_num int," +
+//                "mail text" +
+//                ")");
+        db.execSQL("create table if not exists report" +
                 "(" +
                 "_id integer primary key autoincrement," +
-                "casenum integer," +
-                "campus-area text," +
-                ""+
+                "campus_area text," +
+                "case_type text," +
+                "image_url text," +
+                "content text," +
+                "location text," +
+                "date text," +
+                "department text," +
+                "status text"+
                 ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if(newVersion>oldVersion){
-            db.execSQL("drop table user");
+            db.execSQL("drop table report");
             onCreate(db);
         }
     }

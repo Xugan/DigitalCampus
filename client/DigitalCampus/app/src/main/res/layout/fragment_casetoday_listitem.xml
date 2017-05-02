@@ -11,7 +11,7 @@
         android:background="@color/white">
 
         <ImageView
-            android:id="@+id/iv_case_pic"
+            android:id="@+id/ivPic"
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:src="@mipmap/notice_item_icon_example"
@@ -31,15 +31,15 @@
 
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="工作部门:"
+                    android:text="工作状态:"
                     android:textSize="16sp"
                     />
                 <TextView
-                    android:id="@+id/department"
+                    android:id="@+id/case_status"
                     android:layout_marginLeft="20dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="后勤部"
+                    android:text="处理中"
                     android:textSize="16sp"/>
             </LinearLayout>
             <LinearLayout
@@ -48,7 +48,6 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="类      型："

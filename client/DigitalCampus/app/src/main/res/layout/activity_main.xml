@@ -60,6 +60,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="首页"
+                android:id="@+id/tv_home"
                 android:layout_centerHorizontal="true"/>
         </RelativeLayout>
         <RelativeLayout
@@ -73,6 +74,7 @@
                 android:src="@mipmap/ic_build_black_18dp"
                 android:layout_centerHorizontal="true"/>
             <TextView
+                android:id="@+id/tv_report"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="上报"
@@ -90,6 +92,7 @@
                 android:src="@mipmap/ic_card_travel_black_18dp"
                 android:layout_centerHorizontal="true"/>
             <TextView
+                android:id="@+id/tv_work"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="工作"
@@ -107,6 +110,7 @@
                 android:src="@mipmap/ic_perm_identity_black_18dp"
                 android:layout_centerHorizontal="true"/>
             <TextView
+                android:id="@+id/tv_service"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="服务"

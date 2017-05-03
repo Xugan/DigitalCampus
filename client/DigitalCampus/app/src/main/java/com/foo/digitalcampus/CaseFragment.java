@@ -6,35 +6,39 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * Created by lirui on 2017/4/3.
- */
 
-public class CaseFragment extends Fragment{
+
+public class CaseFragment extends Fragment {
     private ListView lvCase_today;
     private CaseTodayAdapter caseTodayAdapter;
     private List<Map<String,Object>> list;
     private SQLiteDatabase db;
     private MySQLiteOpenHelper helper;
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         //return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.case_fragment,container,false);
-        lvCase_today = (ListView) view.findViewById(R.id.case_today);
-        list = new ArrayList<>();
+        swipeRefreshLayout = (SwipeRefreshLayout) view.findViewById(R.id.swipeRefresh);
 
+
+        lvCase_today = (ListView) view.findViewById(R.id.case_today);
+
+        //bindData();
 
         lvCase_today.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -44,6 +48,14 @@ public class CaseFragment extends Fragment{
                 startActivity(intent);
             }
         });
+
+
+
+        return view;
+    }
+
+    private void bindData(){
+        list = new ArrayList<>();
         helper = new MySQLiteOpenHelper(getContext());
         db = helper.getReadableDatabase();
         Cursor cursor = db.query("report",null,null,null,null,null,null);
@@ -60,7 +72,20 @@ public class CaseFragment extends Fragment{
 
         caseTodayAdapter = new CaseTodayAdapter(list,getContext());
         lvCase_today.setAdapter(caseTodayAdapter);
-        caseTodayAdapter.notifyDataSetChanged();
-        return view;
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        bindData();
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                bindData();
+                Toast.makeText(getContext(),"刷新完成",Toast.LENGTH_SHORT).show();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 }

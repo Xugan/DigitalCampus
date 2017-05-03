@@ -1,6 +1,11 @@
 package com.foo.digitalcampus;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.Handler;
+import android.os.Message;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +15,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -20,6 +26,9 @@ import java.util.Map;
 public class CaseActivityAdapter extends BaseAdapter {
     private List<Map<String,Object>> list;
     private Context context;
+
+
+
 
     public CaseActivityAdapter(List<Map<String, Object>> list, Context context) {
         this.list = list;
@@ -43,11 +52,12 @@ public class CaseActivityAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+
         ViewHolder holder = null;
         if(convertView == null){
             holder = new ViewHolder();
             convertView = LayoutInflater.from(context).inflate(R.layout.casetoday_listitem,null);
-            holder.ivPic = (ImageView) convertView.findViewById(R.id.iv_case_pic);
+            holder.iv_case_pic = (ImageView) convertView.findViewById(R.id.iv_case_pic);
             holder.case_time = (TextView) convertView.findViewById(R.id.case_time);
             holder.case_num = (TextView) convertView.findViewById(R.id.case_num);
             holder.case_type = (TextView) convertView.findViewById(R.id.case_type);
@@ -60,12 +70,16 @@ public class CaseActivityAdapter extends BaseAdapter {
             holder.case_type.setText(list.get(position).get("case_type")+"");
             holder.case_time.setText(list.get(position).get("date")+"");
             holder.department.setText(list.get(position).get("department")+"");
-        Picasso.with(context).load(list.get(position).get("image_url")+"").into(holder.ivPic);
+        Picasso.with(context).load(new File(list.get(position).get("image_url")+"")).placeholder(R.mipmap.ic_launcher).into(holder.iv_case_pic);
+//        Bitmap bitmap = BitmapFactory.decodeFile(list.get(position).get("Image_url")+"");
+//        holder.iv_case_pic.setImageBitmap(bitmap);
+
+
         return convertView;
     }
 
     class ViewHolder{
-        private ImageView ivPic;
+        private ImageView iv_case_pic;
         private TextView case_num;
         private TextView case_type;
         private TextView case_time;

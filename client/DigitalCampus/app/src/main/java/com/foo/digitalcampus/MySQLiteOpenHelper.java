@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
-    private static final int VERSION = 2;
+    private static final int VERSION = 1;
     private static final String DBNAME = "users.db";
     public MySQLiteOpenHelper(Context context) {
         super(context, DBNAME, null, VERSION);
@@ -38,12 +38,20 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
                 "department text," +
                 "status text"+
                 ")");
+
+        db.execSQL("create table if not exists user" +
+                "(" +
+                "_id integer primary key autoincrement," +
+                "username text," +
+                "password text" +
+                ")");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         if(newVersion>oldVersion){
-            db.execSQL("drop table report");
+            db.execSQL("drop table if exists report");
+            db.execSQL("drop table if exists user");
             onCreate(db);
         }
     }

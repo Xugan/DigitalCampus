@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.support.design.widget.SwipeDismissBehavior;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -11,6 +13,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +49,8 @@ public class CaseInfoActivity extends AppCompatActivity {
         int caseNumber = intent.getIntExtra("caseNumber",-1);
         //绑定案件编号
        // tvCaseNumber.setText("第"+(caseNumber+1)+"号案卷");
+
+
         helper = new MySQLiteOpenHelper(this);
         db = helper.getReadableDatabase();
 
@@ -59,7 +64,7 @@ public class CaseInfoActivity extends AppCompatActivity {
             tvCaseType.setText(cursor.getString(cursor.getColumnIndex("case_type")));
             tvLocation.setText(cursor.getString(cursor.getColumnIndex("location")));
             tvCaseStatus.setText(cursor.getString(cursor.getColumnIndex("status")));
-            Picasso.with(this).load(cursor.getString(cursor.getColumnIndex("image_url"))).into(ivCasePic);
+            Picasso.with(this).load(new File(cursor.getString(cursor.getColumnIndex("image_url")))).into(ivCasePic);
         }
        cursor.close();
 

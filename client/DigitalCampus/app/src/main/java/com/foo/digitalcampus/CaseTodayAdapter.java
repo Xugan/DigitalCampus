@@ -1,6 +1,8 @@
 package com.foo.digitalcampus;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
 
@@ -59,7 +62,9 @@ public class CaseTodayAdapter extends BaseAdapter {
             holder = (ViewHolder) convertView.getTag();
         }
 
-        Picasso.with(context).load(list.get(position).get("image_url")+"").into(holder.ivPic);
+        Picasso.with(context).load(new File(list.get(position).get("image_url")+"")).into(holder.ivPic);
+//        Bitmap bitmap = BitmapFactory.decodeFile(list.get(position).get("image_url")+"");
+//        holder.ivPic.setImageBitmap(bitmap);
         holder.case_time.setText(list.get(position).get("case_date")+"");
         holder.case_type.setText(list.get(position).get("case_type")+"");
         holder.case_num.setText("第"+list.get(position).get("case_num")+"号案卷");

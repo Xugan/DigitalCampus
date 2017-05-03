@@ -32,26 +32,6 @@
         android:textColor="@color/white"/>
 
     <LinearLayout
-        android:id="@+id/lin_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_centerInParent="true">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="学号："
-            android:textSize="20sp"
-            android:textColor="@color/white"/>
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="请输入学号"
-            android:textSize="20sp"
-            android:textColor="@color/white"
-            android:textColorHint="@color/white"/>
-    </LinearLayout>
-    <LinearLayout
         android:id="@+id/lin_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,6 +46,7 @@
             android:textColor="@color/white"
             android:textSize="20sp"/>
         <EditText
+            android:id="@+id/et_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="请输入密码"
@@ -84,5 +65,41 @@
         android:background="@drawable/btn_login_background"
         android:textColor="@color/infoBlueColor"
         android:textSize="17sp"
-        android:onClick="onClick"/>
+        android:onClick="login"/>
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:text="立即注册"
+        android:layout_below="@id/btn_login"
+        android:layout_marginTop="30dp"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/btn_login_background"
+        android:textColor="@color/infoBlueColor"
+        android:textSize="17sp"
+        android:onClick="register"/>
+
+    <LinearLayout
+        android:id="@+id/lin_account"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/lin_password"
+        android:layout_alignStart="@+id/lin_password">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="学号："
+            android:textSize="20sp"
+            android:textColor="@color/white"/>
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="请输入学号"
+            android:textSize="20sp"
+            android:id="@+id/et_user_num"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"/>
+    </LinearLayout>
 </RelativeLayout>

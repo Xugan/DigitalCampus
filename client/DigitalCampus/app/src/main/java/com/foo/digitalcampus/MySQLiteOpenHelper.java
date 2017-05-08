@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 
 public class MySQLiteOpenHelper extends SQLiteOpenHelper {
-    private static final int VERSION = 1;
+    private static final int VERSION = 2;
     private static final String DBNAME = "users.db";
     public MySQLiteOpenHelper(Context context) {
         super(context, DBNAME, null, VERSION);
@@ -17,15 +17,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-//        db.execSQL("crate table if not exists UserInfo " +
-//                "(" +
-//                "_id integer primary key autoincrement," +
-//                "username text," +
-//                "stu_num integer," +
-//                "department text," +
-//                "phone_num int," +
-//                "mail text" +
-//                ")");
+
         db.execSQL("create table if not exists report" +
                 "(" +
                 "_id integer primary key autoincrement," +
@@ -45,6 +37,17 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
                 "username text," +
                 "password text" +
                 ")");
+
+        db.execSQL("create table if not exists user_info" +
+                "(" +
+                "_id integer primary key autoincrement," +
+                "photo_url text," +
+                "name text," +
+                "stu_num integer," +
+                "depart text," +
+                "phone text," +
+                "mail text" +
+                ")");
     }
 
     @Override
@@ -52,6 +55,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
         if(newVersion>oldVersion){
             db.execSQL("drop table if exists report");
             db.execSQL("drop table if exists user");
+            db.execSQL("drop table if exists user_info");
             onCreate(db);
         }
     }

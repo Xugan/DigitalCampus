@@ -43,6 +43,10 @@ public class LoginActivity extends AppCompatActivity {
                 Toast.makeText(this, "密码错误！", Toast.LENGTH_SHORT).show();
             }
         }
+
+        MyApplication myApplication = new MyApplication();
+        myApplication.setUsername(etUserName.getText().toString());
+        myApplication.setPassword(etPassword.getText().toString());
     }
 
     public void register(View view){

@@ -51,6 +51,7 @@
             android:layout_height="wrap_content"
             android:hint="请输入密码"
             android:textSize="20sp"
+            android:inputType="textPassword"
             android:textColor="@color/white"
             android:textColorHint="@color/white" />
     </LinearLayout>

@@ -40,6 +40,7 @@
         android:layout_height="wrap_content"
         android:hint="password"
         android:id="@+id/etPassword"
+        android:inputType="textPassword"
         android:layout_below="@+id/tvHelp"
         android:layout_centerHorizontal="true"/>
     <Button

@@ -89,7 +89,6 @@ public class CaseActivity extends AppCompatActivity {
         }
         cursor.close();
         adapter = new CaseActivityAdapter(list,this);
-
         lvCase_today.setAdapter(adapter);
     }
 

@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ServiceActivity extends AppCompatActivity {
     private ImageView ivUserInfo;
@@ -12,6 +13,7 @@ public class ServiceActivity extends AppCompatActivity {
     private ImageView ivEducationalSystem;
     private ImageView ivSchoolCalendar;
     private ImageView ivUpdatePassword;
+    private TextView tvUsername;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,7 @@ public class ServiceActivity extends AppCompatActivity {
         ivEducationalSystem = (ImageView) findViewById(R.id.ivEducationalSystem);
         ivSchoolCalendar = (ImageView) findViewById(R.id.ivSchoolCalendar);
         ivUpdatePassword = (ImageView) findViewById(R.id.ivUpdatePassword);
+        tvUsername = (TextView) findViewById(R.id.tv_user_name);
 
         //监听个人信息图标的点击事件
         ivUserInfo.setOnClickListener(new View.OnClickListener() {
@@ -66,5 +69,9 @@ public class ServiceActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        MyApplication myApplication = new MyApplication();
+        tvUsername.setText("欢迎"+myApplication.getUsername());
     }
+
 }

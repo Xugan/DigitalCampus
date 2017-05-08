@@ -95,5 +95,6 @@ public class WorkInfoActivity extends AppCompatActivity {
         if(result>0){
             Toast.makeText(WorkInfoActivity.this, "update success!", Toast.LENGTH_SHORT).show();
         }
+        WorkInfoActivity.this.finish();
     }
 }

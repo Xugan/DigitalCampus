@@ -29,7 +29,7 @@
     </LinearLayout>
     <TextView
         android:background="@color/infoBlueColor"
-        android:id="@+id/tvUsername"
+        android:id="@+id/tv_user_name"
         android:layout_marginTop="10dp"
         android:gravity="center"
         android:layout_width="match_parent"

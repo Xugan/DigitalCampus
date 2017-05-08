@@ -1,12 +1,15 @@
 package com.foo.digitalcampus;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -44,6 +47,7 @@ public class NoticeFragment extends Fragment implements FoodCallback{
             }
         });
 
+
         return view;
     }
 
@@ -51,6 +55,15 @@ public class NoticeFragment extends Fragment implements FoodCallback{
     public void callback(Food food) {
         list.addAll(food.getData().getList());
         adapter.notifyDataSetChanged();
+        lvInfo.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(getContext(),WebviewActivity.class);
+                intent.putExtra("webInfo","http://app.lerays.com/stream/view?"+list.get(position).getQuery_string());
+                //Log.i("NoticewebInfo",list.get(position).getQuery_string());
+                startActivity(intent);
+            }
+        });
     }
 
     private void asyncTask(){

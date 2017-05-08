@@ -4,10 +4,12 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.Entry;
@@ -24,11 +26,10 @@ import java.util.ArrayList;
  */
 
 public class AnalysisFragment extends Fragment {
-
-    View rootView;
-    PieChart analysisPiechart;
-
-    String TAG = "AnalysisFragment";
+    private SwipeRefreshLayout swipeRefreshLayout;
+    private View rootView;
+    private PieChart analysisPiechart;
+    private String TAG = "AnalysisFragment";
 
     @Nullable
     @Override
@@ -37,6 +38,14 @@ public class AnalysisFragment extends Fragment {
         //return super.onCreateView(inflater, container, savedInstanceState);
         rootView = inflater.inflate(R.layout.analysis_fragment, container, false);
         analysisPiechart = (PieChart) rootView.findViewById(R.id.analysis_piechart);
+        swipeRefreshLayout = (SwipeRefreshLayout) rootView.findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                Toast.makeText(getContext(), "刷新成功！", Toast.LENGTH_SHORT).show();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
         return rootView;
     }
 

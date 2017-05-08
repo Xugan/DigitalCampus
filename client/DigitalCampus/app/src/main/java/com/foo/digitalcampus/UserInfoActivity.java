@@ -3,9 +3,11 @@ package com.foo.digitalcampus;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.ContentUris;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -33,6 +35,9 @@ public class UserInfoActivity extends AppCompatActivity {
     private EditText etMail;
     private ImageView ivPhoto;
     public static final int CHOOSE_PHOTO = 2;
+    private SQLiteDatabase db;
+    private MySQLiteOpenHelper helper;
+    private String imagePath;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +94,8 @@ public class UserInfoActivity extends AppCompatActivity {
         });
 
 
+        helper = new MySQLiteOpenHelper(this);
+        //db = helper.getReadableDatabase();
 
 
 }
@@ -133,7 +140,7 @@ public class UserInfoActivity extends AppCompatActivity {
      */
     @TargetApi(19)
     private void handleImageOnKitKat(Intent data) {
-        String imagePath = null;
+         imagePath = null;
         Uri uri = data.getData();
         if (DocumentsContract.isDocumentUri(this, uri)) {
             //如果document类型的Uri,则通过document来处理
@@ -174,15 +181,31 @@ public class UserInfoActivity extends AppCompatActivity {
 
 
     private String getImagePath(Uri uri, String selection) {
-        String path = null;
+         imagePath = null;
         //通过Uri和selection来获取真实的图片路径
         Cursor cursor = getContentResolver().query(uri, null, selection, null, null);
         if (cursor != null) {
             if (cursor.moveToFirst()) {
-                path = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
+                imagePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
             }
             cursor.close();
         }
-        return path;
+        return imagePath;
+    }
+
+
+    public void commit(View view){
+        db = helper.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("photo_url",imagePath);
+        values.put("name",etUsername.getText().toString());
+        values.put("stu_num",etStuNum.getText().toString());
+        values.put("depart",etDepartment.getText().toString());
+        values.put("phone",etPhone.getText().toString());
+        values.put("mail",etMail.getText().toString());
+        long result = db.insert("user_info",null,values);
+        if(result>0){
+            Toast.makeText(UserInfoActivity.this, "提交成功！", Toast.LENGTH_SHORT).show();
+        }
     }
 }

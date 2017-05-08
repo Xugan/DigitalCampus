@@ -254,7 +254,7 @@ public class ReportActivity extends AppCompatActivity {
      */
     @TargetApi(19)
     private void handleImageOnKitKat(Intent data) {
-        String imagePath = null;
+         imagePath = null;
         Uri uri = data.getData();
         if (DocumentsContract.isDocumentUri(this, uri)) {
             //如果document类型的Uri,则通过document来处理
@@ -297,6 +297,7 @@ public class ReportActivity extends AppCompatActivity {
         if(result>0){
             Toast.makeText(ReportActivity.this, "commit success!", Toast.LENGTH_SHORT).show();
         }
+        ReportActivity.this.finish();
 
     }
 

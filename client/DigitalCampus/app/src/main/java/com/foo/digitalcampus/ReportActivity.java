@@ -190,8 +190,10 @@ public class ReportActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     try {
                         Bitmap bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
-                        imagePath = getImagePath(imageUri, null);
+
+                        //Log.i("takePhoto",imagePath);
                         picture.setImageBitmap(bm);
+                        imagePath = getImagePath(imageUri,null);
                     } catch (Exception e) {
                         e.printStackTrace();
                     }

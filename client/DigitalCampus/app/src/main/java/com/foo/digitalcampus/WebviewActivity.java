@@ -17,7 +17,7 @@ public class WebviewActivity extends AppCompatActivity {
         webView = (WebView) findViewById(R.id.webView);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setUseWideViewPort(true);
-        
+
         webView.getSettings().setJavaScriptEnabled(true);
         // 设置可以支持缩放 
         webView.getSettings().setSupportZoom(true);

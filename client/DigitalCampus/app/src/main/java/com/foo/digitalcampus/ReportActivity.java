@@ -190,6 +190,7 @@ public class ReportActivity extends AppCompatActivity {
                 if (resultCode == RESULT_OK) {
                     try {
                         Bitmap bm = BitmapFactory.decodeStream(getContentResolver().openInputStream(imageUri));
+                        imagePath = getImagePath(imageUri, null);
                         picture.setImageBitmap(bm);
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -220,7 +221,7 @@ public class ReportActivity extends AppCompatActivity {
 
     private void handleImageBeforeKitKat(Intent data) {
         Uri uri = data.getData();
-        String imagePath = getImagePath(uri, null);
+         imagePath = getImagePath(uri, null);
         displayImage(imagePath);
     }
 

@@ -36,7 +36,7 @@
                     />
                 <TextView
                     android:id="@+id/case_status"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="处理中"
@@ -56,7 +56,7 @@
                     android:layout_above="@+id/department"/>
                 <TextView
                     android:id="@+id/case_type"
-                    android:layout_marginLeft="20dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="校园环境"
@@ -81,7 +81,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="10dp"
+                android:layout_marginRight="5dp"
                 android:text="2017-04-03"/>
         </RelativeLayout>
     </LinearLayout>

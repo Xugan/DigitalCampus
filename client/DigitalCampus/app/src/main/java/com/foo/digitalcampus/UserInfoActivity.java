@@ -25,6 +25,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
+import java.io.File;
+
 public class UserInfoActivity extends AppCompatActivity {
     private TextView tvBack;
     private EditText etUsername;
@@ -38,6 +42,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private SQLiteDatabase db;
     private MySQLiteOpenHelper helper;
     private String imagePath;
+    private MyApplication myApplication;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -97,7 +102,20 @@ public class UserInfoActivity extends AppCompatActivity {
         helper = new MySQLiteOpenHelper(this);
         //db = helper.getReadableDatabase();
 
-
+        String updateName = myApplication.getUpdateName();
+        //Log.i("updatename",updateName);
+//        db = helper.getReadableDatabase();
+//        Cursor cursor = db.query("user_info",null,"name = ?",new String[]{updateName},null,null,null);
+//
+//        while(cursor.moveToNext()){
+//            etUsername.setText(cursor.getString(cursor.getColumnIndex("name")));
+//            etStuNum.setText(cursor.getString(cursor.getColumnIndex("stu_num")));
+//            etDepartment.setText(cursor.getString(cursor.getColumnIndex("depart")));
+//            etPhone.setText(cursor.getString(cursor.getColumnIndex("phone")));
+//            etMail.setText(cursor.getString(cursor.getColumnIndex("mail")));
+//            Picasso.with(UserInfoActivity.this).load(new File(cursor.getString(cursor.getColumnIndex("photo_url")))).placeholder(R.mipmap.ic_launcher).into(ivPhoto);
+//    }
+//        cursor.close();
 }
 
 
@@ -195,6 +213,9 @@ public class UserInfoActivity extends AppCompatActivity {
 
 
     public void commit(View view){
+        myApplication = new MyApplication();
+        myApplication.setUpdateName(etUsername.getText().toString());
+
         db = helper.getReadableDatabase();
         ContentValues values = new ContentValues();
         values.put("photo_url",imagePath);
@@ -206,6 +227,21 @@ public class UserInfoActivity extends AppCompatActivity {
         long result = db.insert("user_info",null,values);
         if(result>0){
             Toast.makeText(UserInfoActivity.this, "提交成功！", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void save(View view){
+        db = helper.getReadableDatabase();
+        ContentValues values = new ContentValues();
+        values.put("photo_url",imagePath);
+        values.put("name",etUsername.getText().toString());
+        values.put("stu_num",etStuNum.getText().toString());
+        values.put("depart",etDepartment.getText().toString());
+        values.put("phone",etPhone.getText().toString());
+        values.put("mail",etMail.getText().toString());
+        long result = db.update("user_info",values,"name = ?",new String[]{etUsername.getText().toString()});
+        if(result>0){
+            Toast.makeText(UserInfoActivity.this, "修改成功！", Toast.LENGTH_SHORT).show();
         }
     }
 }

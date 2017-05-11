@@ -31,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
 
     public void login(View view){
         db = helper.getReadableDatabase();
+
         Cursor cursor = db.query("user",null,"username = ?",new String[]{etUserName.getText().toString()},null,null,null);
         while(cursor.moveToNext()){
             String dbPassword = cursor.getString(cursor.getColumnIndex("password"));

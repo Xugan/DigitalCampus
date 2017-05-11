@@ -9,6 +9,8 @@ import android.app.Application;
 public class MyApplication extends Application {
     private static String username;
     private static String password;
+    private static String updateName;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -27,7 +29,20 @@ public class MyApplication extends Application {
         return password;
     }
 
+
+
+
+
     public static void setPassword(String password) {
+
         MyApplication.password = password;
+    }
+
+    public static String getUpdateName() {
+        return updateName;
+    }
+
+    public static void setUpdateName(String updateName) {
+        MyApplication.updateName = updateName;
     }
 }
